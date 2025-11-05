@@ -1,7 +1,7 @@
 #!/bin/bash
 APODir=~/Downloads
 apod=$APODir/apod.jpg
-picture="https://apod.nasa.gov/apod/$(echo $(curl https://apod.nasa.gov/apod/index.html | grep  -m1 ".jpg" | sed -e 's/<a href=//g' -e 's/"//g' -e 's/>//g'))"
+picture="https://www.starobserver.org/$(echo "$(curl  https://www.starobserver.org/ | grep -Po "image/.*?.jpg" | sed -e 's/<a href=//g' -e 's/"//g' -e 's/>//g')" | head -n 1)"
 
 if [[ $(curl $picture) != *'Not Found'* ]]; then
 curl $picture -o $apod
